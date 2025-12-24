@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'task_data.dart';
 import 'task_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => TaskData(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -12,11 +19,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'To-Do setState',
-      theme: ThemeData(
-        primaryColor: Colors.green,
-      ),
-      home: TaskScreen(),
+      title: 'To-Do Provider',
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: const TaskScreen(),
     );
   }
 }
